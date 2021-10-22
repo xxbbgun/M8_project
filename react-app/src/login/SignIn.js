@@ -61,6 +61,7 @@ function SignIn({ className }) {
 
           </form>  
           <FacebookLogin
+          className="facebooklogin"
           appId="587112042632028"
           fields="name,email,picture" //เอาอะไรมาจากfacebookบ้าง
           scope="public_profile, email"
@@ -77,11 +78,7 @@ SignIn.propTypes = {
 };
 
 export default styled(SignIn)`
-height: 600px;
-padding-top: 50px;
-
-
-  .container {
+  /* .container {
     background-color: white;
     width: 380px;
     height: 450px;
@@ -94,7 +91,11 @@ padding-top: 50px;
   .container:hover {
     box-shadow: 0 4px 8px 0 lightgray, 0 6px 20px 0 lightgray;
   }
- 
+  */
+  .facebooklogin{
+    border-radius: 0.75rem;
+    border: none;
+  }
   h1 {
     margin-top: 20px;
     text-align: center;
