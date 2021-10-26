@@ -1,39 +1,44 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components";
+import FlipMove from 'react-flip-move';
 import TweetBox from "./TweetBox";
 import Post from './Post';
-import FlipMove from "react-flip-move";
 
+import axios from 'axios';
 function Feed({ className }) {
+    const [tweet, setTweet] = useState([]);
 
+    useEffect(() => {
+        async function getTweet(){
+            const tweet = await axios.get('http://localhost:8080/getpost')
+            setTweet(tweet.data)
+        }
+        getTweet();
+    })
+    console.log(tweet);
     return (
         <>
-       
+
             <div className={className}>
                 <div className=" feed">
                     <div className="feed_header">
                         <h2>Home</h2>
                     </div>
                     <TweetBox />
-                    <Post />
-                    <Post />
-                    {/* <FlipMove>
-                    {posts.map((post) => (
-                        <Post
-                            key={post.text}
-                            displayName={post.displayName}
-                            username={post.username}
-                            verified={post.verified}
-                            text={post.text}
-                            avatar={post.avatar}
-                            image={post.image}
-                        />
-                    ))}
-                </FlipMove> */}
-                </div>  
-              
+
+                    <FlipMove>
+                        {tweet.map((post,index) => (
+                            <Post
+                                key={index}
+                                text={post.text}
+                                image={post.image}
+                            />
+                        ))}
+                    </FlipMove>
+                </div>
+
             </div>
-         </>
+        </>
     )
 }
 

@@ -7,7 +7,7 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 
-function Post({ className, displayName, username, verified, text, image, avatar }) {
+function Post({ className,text, image}) {
     return (
         <div className={className}>
             <div className="post">
@@ -24,10 +24,10 @@ function Post({ className, displayName, username, verified, text, image, avatar 
                             </h3>
                         </div>
                         <div className="post_headerDescription">
-                            <p>Hi my twitter</p>
+                            <p>{text}</p>
                         </div>
                     </div>
-                    <img className="post_image" src="https://miro.medium.com/max/658/1*Hs_qknoAHwUUF66YOz6CxQ.png" />
+                    <img className="post_image" src={image} />
                     <div className="post_footer">
                         <ChatBubbleOutlineIcon fontSize="small" />
                         <RepeatIcon fontSize="small" />
