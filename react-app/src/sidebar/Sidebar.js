@@ -11,13 +11,15 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 function Sidebar({ className }) {
+    const history = useHistory();
     const logout = (event) => {
         event.preventDefault();
         localStorage.removeItem("token");//ลบค่าtokenในlocalStorage
         localStorage.removeItem("name");
+        history.push("/sign-in")
       }
     return (
         <div className={className}>
@@ -27,7 +29,7 @@ function Sidebar({ className }) {
                 <h3 className="sidebar_name" >Dagona</h3>
                 </div>
                 
-                <Link to="/" className="link"><SidebarOption active Icon={HomeIcon} text="Home" /></Link>
+                <Link to="/home" className="link"><SidebarOption active Icon={HomeIcon} text="Home" /></Link>
                 <Link to="/explore" className="link"><SidebarOption Icon={SearchIcon} text="Explore" /></Link>
                 <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
                 <SidebarOption Icon={MailOutlineIcon} text="Messages" />
@@ -50,8 +52,6 @@ export default styled(Sidebar)`
     margin-top: 20px;
     padding-right: 20px;
     padding-left: 20px;
-    width: 15%;
-    
 }
 
 .sidebar_logo{

@@ -6,6 +6,8 @@ import { Switch, Route } from 'react-router';
 import Sidebar from "./sidebar/Sidebar";
 import Feed from './feed/Feed';
 import Timeline from "./news/Timeline";
+import Notifications from "./notification/Notifications";
+import Container from './container/Container'
 
 function App() {
   return (
@@ -18,15 +20,20 @@ function App() {
         <Route path="/sign-up" >
           <SignUp />
         </Route>
-        <Route path="/explore" >
-        <Sidebar />
-        <Timeline/>
-        </Route>
-        <Route path="/" >
-           <Sidebar />
-          {/* <Feed />  */}
-          {/* <Timeline/> */}
-        </Route>
+        <Container>
+          <Route path="/explore" >
+            <Sidebar />
+            <Timeline />
+          </Route>
+          <Route path="/home" >
+            <Sidebar />
+            <Feed />
+            {/* <Notifications/> */}
+
+            {/* <Timeline/> */}
+          </Route>
+        </Container>
+
       </Switch>
 
     </>

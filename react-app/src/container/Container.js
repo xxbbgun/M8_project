@@ -12,9 +12,8 @@ Container.propTypes = {
 };
 
 export default styled(Container)`
-   display: flex;
-  height: 100vh;
-  max-width: 1300px;
+  display: flex;
+  max-width: auto;
   margin-left: auto;
   margin-right: auto;
   padding: 0 10px;

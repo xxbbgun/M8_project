@@ -1,47 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link ,useHistory} from "react-router-dom";
-// import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 
 function SignUp({ className }) {
-  const [username, setUsername] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  
-const logout = (event) => {
-  event.preventDefault();
-  localStorage.removeItem("token");//ลบค่าtokenในlocalStorage
-  localStorage.removeItem("name");
-}
 
+  const addUser = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:8080/sign-up', {
+     name:name,
+     email:email,
+     password:password
+    }).then((response) => {
+      console.log(response);
+      //event.preventDefault()
+      history.push('/home')
 
-  // const addUser = (event) => {
-  //   event.preventDefault();
-  //   axios.post('http://localhost:3001/sign-up', {
-  //     username: username,
-  //     password: password,
-  //     firstname: firstname,
-  //     lastname: lastname,
-  //   }).then((response) => {
-  //     console.log(response);
-  //     //event.preventDefault()
-  //     history.push('/home')
-      
-  //   });
-    
-  // };
+    });
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:3001/sign-in").then((response) => {
-  //     if (response.data.loggedIn == true) {
-  //       setLoginStatus(response.data.user[0].username);
-  //     }
-  //   });
-  // }, []);
+  };
 
   return (
     <>
@@ -51,40 +34,29 @@ const logout = (event) => {
 
           <form id="create-form" className="createform">
             <div className="input-group">
-              
+
               <input
                 name="name"
                 type="text"
                 id="name"
-                onChange={(event) => setFirstname(event.target.value)}
-                placeholder="FirstName"
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Name"
               />
             </div>
 
             <div className="input-group">
-             
-              <input
-                name="name"
-                type="text"
-                id="name"
-                onChange={(event) => setLastname(event.target.value)}
-                placeholder="Lastname"
-              />
-            </div>
 
-            <div className="input-group">
-             
               <input
-                name="name"
+                name="email"
                 type="text"
                 id="name"
-                onChange={(event) => setUsername(event.target.value)}
-                placeholder="Username"
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Email"
               />
             </div>
 
             <div className=" input-group">
-              
+
               <input
                 name="password"
                 type="password"
@@ -95,13 +67,8 @@ const logout = (event) => {
             </div>
 
             <div className="btnSignup">
-              <button>Sign Up</button>
+              <button onClick={addUser}>Sign Up</button>
             </div>
-
-            <div className="btnSignup">
-              <button onClick={logout}>Log Out</button>
-            </div>
-            
 
             <Link to="/sign-in" className="link-login">Already have account ?</Link>
 
@@ -117,10 +84,6 @@ SignUp.propTypes = {
 };
 
 export default styled(SignUp)`
-height: 600px;
-padding-top: 50px;
-
-
   .container {
     background-color: white;
     width: 380px;
@@ -130,6 +93,7 @@ padding-top: 50px;
     border-radius: 20px;
     box-shadow: 0 2px 4px 0 lightgray, 0 3px 10px 0 lightgray;
     transition: .3s;
+    margin-top: 5%;
   }
   .container:hover {
     box-shadow: 0 4px 8px 0 lightgray, 0 6px 20px 0 lightgray;
@@ -162,8 +126,8 @@ padding-top: 50px;
   }
   
   .btnSignup {
-    display: flex;
-    justify-content: center;
+    width: 50%;
+    padding-left: 25%;
   }
   button {
     width: 100%;
@@ -180,7 +144,7 @@ padding-top: 50px;
     padding: 0.5rem 0.7rem;
     cursor: pointer;
     color: #ffffff;
-    background-color: #28a745;
+    background-color: #50b7f5;
     border-radius: 0.75rem;
     border: none;
     margin-bottom: 30px;

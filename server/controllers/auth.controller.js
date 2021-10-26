@@ -1,6 +1,9 @@
 const axios = require('axios');
 const user = require("../models/user");
+const login = require("../models/login");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const { response } = require('express');
 module.exports = {
     facebook: async (req, res, next) => {
         try {
@@ -34,12 +37,47 @@ module.exports = {
                         res.status(200).json({ token, user: { _id, name, email } })
                     });
                 }
-
             } else {
 
             }
         } catch (err) {
 
+        }
+    },
+    register: async (req, res) => {
+        const{name,email,password} = req.body
+        const hashPassword = bcrypt.hashSync(password,12);
+        const data = {name,email,password:hashPassword}
+        const newUser = new login(data);
+        await newUser.save(async(err,data) => {
+            if(err){
+                res.status(400).json("Username that other User has already exist");
+                console.log(err)
+            }else{
+                res.status(200).json({success:true,data:data});
+            }
+        })
+    },
+    signin: async (req, res) => {
+        try {
+            //Checking if the email exists
+            const user = await login.findOne({ email: req.body.email });
+            if(!user) {
+                res.status(400).json("Email is not found!");
+            };
+            //Password is correct
+            const password = req.body.password;
+            const checkPassword = await bcrypt.compareSync(password, user.password);
+            if(checkPassword) {
+                //Shows user information but doesn't show password
+                const {password, ...others} = user._doc;
+                res.status(200).json({ ...others });
+            } else {
+                res.status(400).json("Incorrect password!");
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(error);
         }
     }
 }

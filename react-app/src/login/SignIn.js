@@ -4,25 +4,42 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
+
 function SignIn({ className }) {
   const history = useHistory();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loginStatus, setLoginStatus] = useState("");
 
-  const responseFacebook = async (response) => { 
-    const { name, email, accessToken, userID } = response  
+  const responseFacebook = async (response) => {
+    const { name, email, accessToken, userID } = response
     const user = { name, email, accessToken, userId: userID };
     const res = await axios({
       method: "post",
-      url: "http://localhost:8080/auth/signin/facebook",
+      url: "http://localhost:8080/signin/facebook",
       data: { user }//option ส่งข้อมูลกลับไป(body เหมือนในpostman)
     });
     localStorage.setItem(`token`, JSON.stringify(res.data.token));
     localStorage.setItem(`name`, JSON.stringify(res.data.user.name));
-    history.push('/sign-up');
+    history.push('/home')
   }
+
+  const login = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:8080/sign-in',{
+      email: email,
+      password: password
+    }).then((response) => {
+      history.push('/home')
+    })
+  }
+  useEffect(() => {
+    axios.get('http://localhost:8080/sign-in').then((response) => {
+      console.log(response)
+    })
+
+  }, [])
 
 
   return (
@@ -35,7 +52,7 @@ function SignIn({ className }) {
 
               <input
                 type="text"
-                onChange={(event) => setUsername(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="Username"
               />
             </div>
@@ -50,7 +67,7 @@ function SignIn({ className }) {
             </div>
 
             <div className="btnLogIn">
-              <button type="button">Log in</button>
+              <button onClick={login} type="button">Log in</button>
 
 
             </div>
@@ -59,15 +76,17 @@ function SignIn({ className }) {
             <Link to="/sign-up" className="link-signup">Don't have account ?</Link>
 
 
-          </form>  
+          </form>
+
           <FacebookLogin
-          className="facebooklogin"
-          appId="587112042632028"
-          fields="name,email,picture" //เอาอะไรมาจากfacebookบ้าง
-          scope="public_profile, email"
-          callback={responseFacebook} />
+            className="facebooklogin"
+            appId="587112042632028"
+            fields="name,email,picture" //เอาอะไรมาจากfacebookบ้าง
+            scope="public_profile, email"
+            callback={responseFacebook} />
+
         </div>
-      
+
       </div>
     </>
   );
@@ -78,7 +97,10 @@ SignIn.propTypes = {
 };
 
 export default styled(SignIn)`
-  /* .container {
+.className{
+  background-color: #e6ecf0;
+}
+  .container {
     background-color: white;
     width: 380px;
     height: 450px;
@@ -87,11 +109,12 @@ export default styled(SignIn)`
     border-radius: 20px;
     box-shadow: 0 2px 4px 0 lightgray, 0 3px 10px 0 lightgray;
     transition: .3s;
+    margin-top: 8%;
   }
   .container:hover {
     box-shadow: 0 4px 8px 0 lightgray, 0 6px 20px 0 lightgray;
   }
-  */
+ 
   .facebooklogin{
     border-radius: 0.75rem;
     border: none;
@@ -158,5 +181,11 @@ export default styled(SignIn)`
   .link-signup:hover {
     color: black;
   }
- 
+  .kep-login-facebook.metro{
+    border-radius: 0.75rem;
+    border: none;
+    width: fit-content;
+    font-size: 0.2rem;
+    margin-left: 30%;
+  }
 `;

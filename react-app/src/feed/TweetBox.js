@@ -61,6 +61,7 @@ export default styled(TweetBox)`
     height: 40px;
     margin-top: 20px;
     margin-left: auto;
+    margin-right: 10px;
 }
 .tweetBox_button:hover{
     background-color: #50b7f5 ;

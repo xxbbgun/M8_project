@@ -7,27 +7,48 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 
-function Post({ className, displayName, username, verified, text, image, avatar }) {
+
+function Covid({ item, className }) {
+
     return (
         <div className={className}>
-            <div className="post">
-                <div className="post_avartar">
-                    <Avatar src="https://www.nicepng.com/png/full/202-2024580_png-file-profile-icon-vector-png.png" />
+
+            <div className="news">
+                <div className="news_avartar">
+                    <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC8BPi-LWJXgrEORMGyIsGniQC-taynuHriuXOYS0gCPCljYLdKZQ-MPCqXrK7LK1pva0&usqp=CAU" />
                 </div>
                 <div className="post_body">
                     <div className="post_header">
                         <div className="post_headerText">
-                            <h3>aaaa
+                            <h3>Covid-19 Update
                                 <span className="post_headerSpecial">
-                                    <VerifiedIcon className="post_badge" />@sdfsdfsdfs
+                                    <VerifiedIcon className="post_badge" />@Covid_19
                                 </span>
                             </h3>
                         </div>
-                        <div className="post_headerDescription">
-                            <p>Hi my twitter</p>
-                        </div>
+                    
+                            <div className="post_headerDescription">
+                                <h4>Date :</h4>
+                                <p>{item.txn_date}</p>
+                            </div>
+
+                            <div className="post_headerDescription">
+                                <h4>New Case :</h4>
+                                <p>{item.new_case}</p>
+                            </div>
+
+                            <div className="post_headerDescription">
+                                <h4>Death :</h4>
+                                <p>{item.new_death}</p>
+                            </div>
+
+                            <div className="post_headerDescription">
+                                <h4>Total Case :</h4>
+                                <p>{item.total_case}</p>
+                            </div>
+                     
                     </div>
-                    <img className="post_image" src="https://miro.medium.com/max/658/1*Hs_qknoAHwUUF66YOz6CxQ.png" />
+                    {/* <img src={item.multimedia[0].url} /> */}
                     <div className="post_footer">
                         <ChatBubbleOutlineIcon fontSize="small" />
                         <RepeatIcon fontSize="small" />
@@ -36,43 +57,46 @@ function Post({ className, displayName, username, verified, text, image, avatar 
                     </div>
                 </div>
             </div>
-
         </div>
+
+
     )
 }
 
-export default styled(Post)`
-
-.post{
+export default styled(Covid)`
+.news{
   display: flex;
   align-items: flex-start;
   border-bottom: 1px solid #e6ecf0;
   padding-bottom: 10px;
-
 
 }
 .post_body{
     flex:1;
     padding: 10px;
 }
-
-img.post_image{
-    width: 50%;
- 
+.post_body > img {
+    border-radius: 20px;
+    width: 70%;
 }
-
 .post_footer{
     display: flex;
     justify-content: space-between;
-    margin-right: 10px;
     margin-top:10px;
 }
 .post_headerDescription{
     margin-bottom: 10px;
     font-size: 15px;
+    display: flex;
+
 }
+.post_headerDescription > p{
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
 .post_headerText > h3 {
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 5px;
 }
 .post_badge{
@@ -84,7 +108,7 @@ img.post_image{
     font-size: 12px;
     color: gray;
 }
-.post_avartar{
+.news_avartar{
     padding: 20px;
 }
 `;

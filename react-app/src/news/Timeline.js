@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import styled from "styled-components";
 import News from './News';
 import axios from 'axios';
 import { Row } from "react-bootstrap";
-import styled from "styled-components";
+
 function Timeline() {
     const [products, setProducts] = useState([]);
 
@@ -17,20 +18,32 @@ function Timeline() {
 
         getProducts();
     }, []);
-    
+
     return (
+        <>
+            
+                <Row className="card-container">
+                    {products.map((value, index) => {
+                        return <News key={index} item={value} />;
+                    })}
+                </Row>
+         
 
-
-        <Row className="card-container">
-            {products.map((value,index) => {
-                return <News key={index} item={value} />;
-            })}
-        </Row>
+        </>
 
     )
 }
 
 export default styled(Timeline)`
+.feed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border:1px solid #e6ecf0;
+    padding:15px 20px;  
+    
+}
 .card-container {
     margin-top: 25px;
     display: flex;

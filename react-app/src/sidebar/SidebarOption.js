@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from "styled-components";
 
-function SidebarOption({ active,text, Icon, className }) {//prop pass icon
+function SidebarOption({ active, text, Icon, className }) {//prop pass icon
     return (
         <div className={className}>
-            <div className={`sidebarOption ${active && 'sidebarOption_active'}`}>
-                <Icon />
-                <h2>{text}</h2>
+            <div className="mainSidebar">
+                <div className={`sidebarOption ${active && 'sidebarOption_active'}`}>
+                    <Icon />
+                    <h2>{text}</h2>
+                </div>
             </div>
         </div>
     )
