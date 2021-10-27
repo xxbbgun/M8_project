@@ -3,30 +3,46 @@ import axios from 'axios';
 import { Row } from "react-bootstrap";
 import styled from "styled-components";
 import Covid from './Covid';
+import Weather from './Weather';
 function Notifications() {
-    const [products, setProducts] = useState([]);
+    const [covid, setCovid] = useState([]);
+    const [weather, setWeather] = useState([]);
 
     useEffect(() => {
-        async function getProducts() {
-            const products = await axios.get(
+        async function getCovid() {
+            const covids = await axios.get(
                 'https://covid19.ddc.moph.go.th/api/Cases/today-cases-all'
             );
-            console.log(products);
-            setProducts(products.data);
+            setCovid(covids.data);
         }
+        getCovid();
+    }, []);
 
-        getProducts();
+    useEffect(() => {
+        async function getWeather() {
+            const weathers = await axios.get(
+                'https://api.openweathermap.org/data/2.5/weather?q=Thailand&appid=ae362cc629b1a438db3b5782c3b4fff3'
+            );
+            setWeather(weathers.data);
+        }
+        getWeather();
     }, []);
     
     return (
-
+<>
 
         <Row className="card-container">
-            {products.map((value,index) => {
+            {covid.map((value,index) => {
                 return <Covid key={index} item={value} />;
             })}
+             
         </Row>
-
+        {/* <Row className="card-container">
+            {weather.map((value,index) => {
+                return <Weather key={index} item={value} />;
+            })}
+        </Row> */}
+</>
     )
 }
 

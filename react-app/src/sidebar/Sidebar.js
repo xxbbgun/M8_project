@@ -30,7 +30,7 @@ function Sidebar({ className }) {
                 </div>
                 <Link to="/home" className="link"><SidebarOption  Icon={HomeIcon}/><h3>Home</h3></Link>
                 <Link to="/explore" className="link"><SidebarOption  Icon={SearchIcon} /><h3>Explore</h3></Link>
-                <Link to  className="link"> <SidebarOption Icon={NotificationsNoneIcon}/><h3>Notifications</h3></Link>
+                <Link to="/Notifications"  className="link"> <SidebarOption Icon={NotificationsNoneIcon}/><h3>Notifications</h3></Link>
                 <Link to  className="link"><SidebarOption Icon={MailOutlineIcon}/><h3>Messages</h3></Link>
                 <Link to  className="link"><SidebarOption Icon={BookmarkBorderIcon}/><h3>Bookmarks</h3></Link>
                 <Link to className="link"><SidebarOption Icon={ListAltIcon}/><h3>Lists</h3></Link>

@@ -26,6 +26,12 @@ function App() {
             <Timeline />
           </Container>
         </Route>
+        <Route path="/Notifications" >
+          <Container>
+            <Sidebar />
+            <Notifications />
+          </Container>
+        </Route>
         <Route path="/home" >
           <Container>
             <Sidebar />

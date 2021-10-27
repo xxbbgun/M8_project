@@ -17,7 +17,6 @@ function Feed({ className }) {
             setTweet(tweet.data)
         }
         getTweet();
-        console.log(token)
     },[])
     console.log(tweet);
     return (
