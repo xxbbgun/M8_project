@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from "styled-components";
-import TwitterIcon from '@mui/icons-material/Twitter';
 import SidebarOption from './SidebarOption';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,8 +10,9 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
-import { Link ,useHistory} from "react-router-dom";
+import { Link ,useHistory,NavLink} from "react-router-dom";
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
+
 function Sidebar({ className }) {
     const history = useHistory();
     const logout = (event) => {
@@ -28,18 +28,15 @@ function Sidebar({ className }) {
                     <FaceRetouchingNaturalIcon className="sidebar_tweetIcon" />
                 <h3 className="sidebar_name" >Dagona</h3>
                 </div>
-                
-                <Link to="/home" className="link"><SidebarOption active Icon={HomeIcon} text="Home" /></Link>
-                <Link to="/explore" className="link"><SidebarOption Icon={SearchIcon} text="Explore" /></Link>
-                <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
-                <SidebarOption Icon={MailOutlineIcon} text="Messages" />
-                <SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" />
-                <SidebarOption Icon={ListAltIcon} text="Lists" />
-                <SidebarOption Icon={PersonOutlineIcon} text="Profile" />
-                <SidebarOption Icon={MoreHorizIcon} text="More" />
-
+                <Link to="/home" className="link"><SidebarOption  Icon={HomeIcon}/><h3>Home</h3></Link>
+                <Link to="/explore" className="link"><SidebarOption  Icon={SearchIcon} /><h3>Explore</h3></Link>
+                <Link to  className="link"> <SidebarOption Icon={NotificationsNoneIcon}/><h3>Notifications</h3></Link>
+                <Link to  className="link"><SidebarOption Icon={MailOutlineIcon}/><h3>Messages</h3></Link>
+                <Link to  className="link"><SidebarOption Icon={BookmarkBorderIcon}/><h3>Bookmarks</h3></Link>
+                <Link to className="link"><SidebarOption Icon={ListAltIcon}/><h3>Lists</h3></Link>
+                <Link to className="link"><SidebarOption Icon={PersonOutlineIcon} /><h3>Profile</h3></Link>
+                <Link to className="link"><SidebarOption Icon={MoreHorizIcon}/><h3>More</h3></Link>
                 <Button variant="outlined" className="sidebar_tweet" fullWidth onClick={logout}>Log out</Button>
-
             </div>
         </div>
     )
@@ -47,11 +44,12 @@ function Sidebar({ className }) {
 
 export default styled(Sidebar)`
 .sidebar{
-    border-right: 1px solid #e6ecf0;
     flex: 0.3;
     margin-top: 20px;
     padding-right: 20px;
     padding-left: 20px;
+    width: 10vw;
+
 }
 
 .sidebar_logo{
@@ -60,6 +58,22 @@ export default styled(Sidebar)`
 .link{
     text-decoration: none;
     color: black;
+    border: none;
+    font-weight: 900;
+    text-transform: inherit;
+    border-radius: 30px;
+    height: 50px;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    transition: 0.25s;
+    padding-bottom: 15px;
+
+}
+.link:hover , .link:focus{
+    color:#50b7f5;
+    transition: 0.25s;
+    text-decoration: none;
 }
 .sidebar_tweetIcon{
     color: #50b7f5;
@@ -67,8 +81,6 @@ export default styled(Sidebar)`
     margin-left: 20px;
     margin-right: 20px;
 }
-
-
 .sidebar_tweet{
     background-color: #50b7f5 ;
     border:none;
@@ -88,5 +100,10 @@ export default styled(Sidebar)`
     border-radius: 30px;
     height: 50px;
     margin-top: 20px;
+}
+@media screen and (max-width: 320px) {
+    h3{
+   display:none;
+}
 }
 `;

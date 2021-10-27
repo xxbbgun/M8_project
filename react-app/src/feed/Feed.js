@@ -10,11 +10,11 @@ function Feed({ className }) {
 
     useEffect(() => {
         async function getTweet(){
-            const tweet = await axios.get('http://localhost:8080/getpost')
+            const tweet = await axios.get('http://localhost:8080/timeline/getpost')
             setTweet(tweet.data)
         }
         getTweet();
-    })
+    },[])
     console.log(tweet);
     return (
         <>
@@ -45,11 +45,11 @@ function Feed({ className }) {
 export default styled(Feed)`
 
 .feed{
-  position: relative;
   flex:0.4;
   flex-direction: column;
   border-right: 1px solid #e6ecf0;
   width: 80vw;
+  margin-left: 50px;
 }
 
 

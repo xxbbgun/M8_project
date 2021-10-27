@@ -9,7 +9,7 @@ function TweetBox({ className }) {
 
     const sendTweet = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/post',{
+        axios.post('http://localhost:8080/timeline/post',{
             text: tweetMessage,
             image: tweetImage
         }).then((response) => {
@@ -18,7 +18,7 @@ function TweetBox({ className }) {
         })
       }
       useEffect(() => {
-        axios.get('http://localhost:8080/post').then((response) => {
+        axios.get('http://localhost:8080/timeline/post').then((response) => {
           console.log(response)
         })
     

@@ -52,7 +52,8 @@ export default styled(News)`
   align-items: flex-start;
   border-bottom: 1px solid #e6ecf0;
   padding-bottom: 10px;
-  width: 1200px;
+  width:80vw;
+  margin-left: 50px;
 }
 .post_body{
     flex:1;

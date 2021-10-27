@@ -17,7 +17,7 @@ function SignIn({ className }) {
     const user = { name, email, accessToken, userId: userID };
     const res = await axios({
       method: "post",
-      url: "http://localhost:8080/signin/facebook",
+      url: "http://localhost:8080/auth/signin/facebook",
       data: { user }//option ส่งข้อมูลกลับไป(body เหมือนในpostman)
     });
     localStorage.setItem(`token`, JSON.stringify(res.data.token));
@@ -27,15 +27,16 @@ function SignIn({ className }) {
 
   const login = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8080/sign-in',{
+    axios.post('http://localhost:8080/auth/sign-in',{
       email: email,
       password: password
-    }).then((response) => {
+    }).then((res) => {
+      localStorage.setItem(`token`, JSON.stringify(res.data.token));
       history.push('/home')
     })
   }
   useEffect(() => {
-    axios.get('http://localhost:8080/sign-in').then((response) => {
+    axios.get('http://localhost:8080/auth/sign-in').then((response) => {
       console.log(response)
     })
 

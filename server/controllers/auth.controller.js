@@ -1,7 +1,6 @@
 const axios = require('axios');
 const user = require("../models/user");
 const login = require("../models/login");
-const post = require("../models/post");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 module.exports = {
@@ -70,8 +69,8 @@ module.exports = {
             const checkPassword = await bcrypt.compareSync(password, user.password);
             if(checkPassword) {
                 //Shows user information but doesn't show password
-                const {password, ...others} = user._doc;
-                res.status(200).json({ ...others });
+                const token = await user.generateAuthenToken();
+                res.status(200).json(token);
             } else {
                 res.status(400).json("Incorrect password!");
             }
@@ -79,46 +78,6 @@ module.exports = {
             console.log(error);
             res.status(500).json(error);
         }
-    },
-    // post:async (req, res) => {
-    //     const{text,image} = req.body
-    //     const data = {text,image}
-    //     const postTweet = new post(data);
-    //     await postTweet.save(async(err,data) => {
-    //         if(err){
-    //             res.status(400).json("Tweet error!");
-    //             console.log(err)
-    //         }else{
-    //             res.status(200).json({success:true,data:data});
-    //         }
-    //     }) 
-    // }
-
-    post:async (req, res) => {
-        const{text,image} = req.body
-        const data = {text,image}
-        try{
-            const postTweet = new post(data);
-            await postTweet.save() 
-            res.status(201).send()
-        } catch (e) {
-            res.status(400).send(e)
-        }
-    },
-    getpost:async (req, res) => {
-        try{
-            const posts = await post.find({})
-
-            if(!post){
-                return res.status(404).send()
-            }
-
-            res.send(posts)
-
-        } catch (e) {
-            res.status(400).send()
-        }
     }
-
-
+  
 }

@@ -27,8 +27,7 @@ function Timeline() {
                         return <News key={index} item={value} />;
                     })}
                 </Row>
-         
-
+                
         </>
 
     )

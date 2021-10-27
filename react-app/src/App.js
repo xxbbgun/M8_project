@@ -20,20 +20,21 @@ function App() {
         <Route path="/sign-up" >
           <SignUp />
         </Route>
-        <Container>
-          <Route path="/explore" >
+        <Route path="/explore" >
+          <Container>
             <Sidebar />
             <Timeline />
-          </Route>
-          <Route path="/home" >
+          </Container>
+        </Route>
+        <Route path="/home" >
+          <Container>
             <Sidebar />
             <Feed />
-            {/* <Notifications/> */}
-
-            {/* <Timeline/> */}
-          </Route>
-        </Container>
-
+          </Container>
+        </Route>
+        <Route path="/">
+          <SignIn />
+        </Route>
       </Switch>
 
     </>
