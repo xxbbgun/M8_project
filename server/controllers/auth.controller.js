@@ -46,14 +46,14 @@ module.exports = {
     register: async (req, res) => {
         const{name,email,password} = req.body
         const hashPassword = bcrypt.hashSync(password,12);
-        const data = {name,email,password:hashPassword}
         const newUser = new login(data);
-        await newUser.save(async(err,data) => {
+        await newUser.save(async(err) => {
             if(err){
                 res.status(400).json("Username that other User has already exist");
                 console.log(err)
             }else{
-                res.status(200).json({success:true,data:data});
+                const token = await newUser.generateAuthenToken();
+                res.status(200).json(token);
             }
         })
     },
@@ -70,7 +70,6 @@ module.exports = {
             if(checkPassword) {
                 //Shows user information but doesn't show password
                 const token = await user.generateAuthenToken();
-                console.log(token);
                 res.status(200).json(token);
             } else {
                 res.status(400).json("Incorrect password!");
