@@ -7,13 +7,17 @@ import Post from './Post';
 import axios from 'axios';
 function Feed({ className }) {
     const [tweet, setTweet] = useState([]);
-
+    const token = useState(localStorage.getItem(`token`))[0];
+    
     useEffect(() => {
         async function getTweet(){
-            const tweet = await axios.get('http://localhost:8080/timeline/getpost')
+            const tweet = await axios.get('http://localhost:8080/timeline/getpost',
+            {headers:{Authorization:`Bearer ${token}`}}
+            )
             setTweet(tweet.data)
         }
         getTweet();
+        console.log(token)
     },[])
     console.log(tweet);
     return (

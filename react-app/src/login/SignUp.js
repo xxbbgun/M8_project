@@ -13,17 +13,16 @@ function SignUp({ className }) {
 
   const addUser = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8080/sign-up', {
+    axios.post('http://localhost:8080/auth/sign-up', {
      name:name,
      email:email,
      password:password
     }).then((response) => {
       console.log(response);
       //event.preventDefault()
+      localStorage.setItem(`token`, response.data);
       history.push('/home')
-
     });
-
   };
 
   return (

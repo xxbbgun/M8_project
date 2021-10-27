@@ -14,6 +14,7 @@ module.exports = {
         })
     },
     getpost: async (req, res) => {
+        console.log(req.user)
         try {
             const posts = await post.find({})
 

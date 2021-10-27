@@ -70,6 +70,7 @@ module.exports = {
             if(checkPassword) {
                 //Shows user information but doesn't show password
                 const token = await user.generateAuthenToken();
+                console.log(token);
                 res.status(200).json(token);
             } else {
                 res.status(400).json("Incorrect password!");

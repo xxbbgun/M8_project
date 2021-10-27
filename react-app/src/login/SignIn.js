@@ -31,7 +31,7 @@ function SignIn({ className }) {
       email: email,
       password: password
     }).then((res) => {
-      localStorage.setItem(`token`, JSON.stringify(res.data.token));
+      localStorage.setItem(`token`, res.data);
       history.push('/home')
     })
   }
