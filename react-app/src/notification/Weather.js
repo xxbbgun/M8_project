@@ -33,7 +33,7 @@ function Weather({className,item}) {
                         <div className="post_headerDescription">
                             <h4>Description :</h4>
                             
-                            <p>{item.weather[0].description}</p>
+                            {/* <p>{item.weather[0].description}</p> */}
                             
                         </div>
                  

@@ -11,7 +11,6 @@ function News({ item, className }) {
 
     return (
         <div className={className}>
-
             <div className="news">
                 <div className="news_avartar">
                     <Avatar src="https://pbs.twimg.com/profile_images/1098244578472280064/gjkVMelR_400x400.png" />
@@ -29,7 +28,6 @@ function News({ item, className }) {
                             <p>{item.title}</p>
                             <p>{item.abstract}</p>
                         </div>
-
                     </div>
                     <img src={item.multimedia[0].url} />
                     <div className="news_footer">
@@ -47,13 +45,27 @@ function News({ item, className }) {
 }
 
 export default styled(News)`
+.newsfeed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border:1px solid #e6ecf0;
+    padding:15px 20px; 
+    margin-left: 100px;
+    margin-top: 0;  
+    border-bottom:1px solid #e6ecf0;
+    
+}
 .news{
   display: flex;
   align-items: flex-start;
   border-bottom: 1px solid #e6ecf0;
+  border-left:1px solid #e6ecf0;
+  border-right:1px solid #e6ecf0;
   padding-bottom: 10px;
   width:80vw;
-  margin-left: 50px;
+  margin-left: 100px;
 }
 .news_body{
     flex:1;
@@ -96,6 +108,17 @@ export default styled(News)`
         width:60vw;
         margin-left: 100px;
     }
+    .newsfeed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border:1px solid #e6ecf0;
+    padding:15px 20px; 
+    margin-left: 100px;
+    margin-top: 0;  
+    border-bottom:1px solid #e6ecf0;
+}
 @media screen and (max-width: 385px) {
    .news{
     border-left: 1px solid #e6ecf0;

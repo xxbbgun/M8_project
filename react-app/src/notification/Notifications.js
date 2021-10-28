@@ -37,11 +37,7 @@ function Notifications() {
                 {covid.map((value, index) => {
                     return <Covid key={index} item={value} />;
                 })}
-
-            </Row>
-            <Row className="card-container">
                 <Weather item={weather} />;
-                
             </Row>
         </>
     )

@@ -7,7 +7,6 @@ import Post from './Post';
 import axios from 'axios';
 function Feed({ className }) {
     const [tweet, setTweet] = useState([]);
-    // const token = useState(JSON.parse(localStorage.getItem(`token`))[0]);
     const [token] = React.useState(JSON.parse(localStorage.getItem("token")));
     const [name] = React.useState(JSON.parse(localStorage.getItem("name")));
     console.log(token)
@@ -20,7 +19,6 @@ function Feed({ className }) {
         }
         getTweet();
     }, [])
-    console.log(tweet)
     return (
         <>
 
