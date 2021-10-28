@@ -111,7 +111,6 @@ export default styled(Sidebar)`
   }
 }
 @media screen and (max-width: 385px) {
-  
     h3{
     display: none;
   }
