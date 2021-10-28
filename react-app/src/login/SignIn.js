@@ -27,7 +27,7 @@ function SignIn({ className }) {
 
   const login = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8080/auth/sign-in',{
+    axios.post('http://localhost:8080/auth/sign-in', {
       email: email,
       password: password
     }).then((res) => {
@@ -98,9 +98,9 @@ SignIn.propTypes = {
 };
 
 export default styled(SignIn)`
-.className{
+  .className{
   background-color: #e6ecf0;
-}
+  }
   .container {
     background-color: white;
     width: 380px;
@@ -188,4 +188,25 @@ export default styled(SignIn)`
     font-size: 0.2rem;
     margin-left: 30%;
   }
+
+@media screen and (max-width: 768px) {
+  .container{
+    margin-top: 200px;
+  }
+}
+@media screen and (max-width: 385px) {
+  .container {
+    width: 70%;
+    margin-top: 50%;
+  }
+  form input {
+    width: 80%;
+  }
+  .kep-login-facebook.metro{
+    margin-left: 60px;
+  }
+  .link-signup{
+    margin-left: 60px;
+  }
+}
 `;

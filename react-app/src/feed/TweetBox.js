@@ -20,14 +20,14 @@ function TweetBox({ className }) {
             setTweetMessage("");
             setTweetImage("");
         })
-      }
+        window.location.reload();
+    }
       useEffect(() => {
         axios.get('http://localhost:8080/timeline/post'
         ).then((response) => {
             
           console.log(response)
         })
-    
       }, [])
 
     return (

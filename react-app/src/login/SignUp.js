@@ -86,7 +86,7 @@ export default styled(SignUp)`
   .container {
     background-color: white;
     width: 380px;
-    height: 530px;
+    height: 450px;
     padding: 30px;
     margin: 0 auto;
     border-radius: 20px;
@@ -161,5 +161,22 @@ export default styled(SignUp)`
   .link-login:hover {
     color: black;
   }
+  @media screen and (max-width: 768px) {
+  .container{
+    margin-top: 200px;
+  }
+}
+@media screen and (max-width: 385px) {
+  .container {
+    width: 70%;
+    margin-top: 50%;
+  }
+  form input {
+    width: 80%;
+  }
+  .link-signup{
+    margin-left: 50px;
+  }
+}
  
 `;

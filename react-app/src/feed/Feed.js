@@ -40,6 +40,7 @@ function Feed({ className }) {
                             />
                         ))}
                     </FlipMove>
+                    
                 </div>
 
             </div>
