@@ -21,7 +21,7 @@ function SignIn({ className }) {
       data: { user }//option ส่งข้อมูลกลับไป(body เหมือนในpostman)
     });
     localStorage.setItem(`token`, JSON.stringify(res.data.token));
-    localStorage.setItem(`name`, JSON.stringify(res.data.user.name));
+    localStorage.setItem(`name`, JSON.stringify(res.data.name));
     history.push('/home')
   }
 
@@ -31,13 +31,13 @@ function SignIn({ className }) {
       email: email,
       password: password
     }).then((res) => {
-      localStorage.setItem(`token`, res.data);
+      localStorage.setItem(`token`, JSON.stringify(res.data.token));
+      localStorage.setItem(`name`, JSON.stringify(res.data.user.name));
       history.push('/home')
     })
   }
   useEffect(() => {
     axios.get('http://localhost:8080/auth/sign-in').then((response) => {
-      console.log(response)
     })
 
   }, [])
@@ -164,7 +164,7 @@ export default styled(SignIn)`
     padding: 0.5rem 0.7rem;
     cursor: pointer;
     color: #ffffff;
-    background-color: #28a745;
+    background-color: #50b7f5;
     border-radius: 0.75rem;
     border: none;
     margin-bottom: 30px;
@@ -173,11 +173,10 @@ export default styled(SignIn)`
     margin-bottom: 1.5rem;
   }
   .link-signup {
-    margin: 0 auto;
     color: gray;
     text-decoration: none;
     transition: 0.2s;
-    margin-left: 25%;
+    margin-left: 30%;
   }
   .link-signup:hover {
     color: black;

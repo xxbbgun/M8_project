@@ -8,6 +8,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 
 function Post({ className,text, image}) {
+    const [name] = React.useState(JSON.parse(localStorage.getItem("name")));
     return (
         <div className={className}>
             <div className="post">
@@ -17,9 +18,9 @@ function Post({ className,text, image}) {
                 <div className="post_body">
                     <div className="post_header">
                         <div className="post_headerText">
-                            <h3>aaaa
+                            <h3>{name}
                                 <span className="post_headerSpecial">
-                                    <VerifiedIcon className="post_badge" />@sdfsdfsdfs
+                                    <VerifiedIcon className="post_badge" />@{name}
                                 </span>
                             </h3>
                         </div>

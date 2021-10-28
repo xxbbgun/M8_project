@@ -4,6 +4,7 @@ import { Avatar, Button } from '@mui/material';
 import axios from 'axios';
 
 function TweetBox({ className }) {
+    const [token] = React.useState(JSON.parse(localStorage.getItem("token")));
     const [tweetMessage, setTweetMessage] = useState("");
     const [tweetImage, setTweetImage] = useState("");
 
@@ -11,14 +12,19 @@ function TweetBox({ className }) {
         event.preventDefault();
         axios.post('http://localhost:8080/timeline/post',{
             text: tweetMessage,
-            image: tweetImage
-        }).then((response) => {
+            image: tweetImage,
+            
+        },  {headers:{Authorization:`Bearer ${token}`}}
+        ).then((response) => {
+            
             setTweetMessage("");
             setTweetImage("");
         })
       }
       useEffect(() => {
-        axios.get('http://localhost:8080/timeline/post').then((response) => {
+        axios.get('http://localhost:8080/timeline/post'
+        ).then((response) => {
+            
           console.log(response)
         })
     

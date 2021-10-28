@@ -23,26 +23,27 @@ function Notifications() {
             const weathers = await axios.get(
                 'https://api.openweathermap.org/data/2.5/weather?q=Thailand&appid=ae362cc629b1a438db3b5782c3b4fff3'
             );
+            
             setWeather(weathers.data);
         }
         getWeather();
+        
     }, []);
-    
-    return (
-<>
 
-        <Row className="card-container">
-            {covid.map((value,index) => {
-                return <Covid key={index} item={value} />;
-            })}
-             
-        </Row>
-        {/* <Row className="card-container">
-            {weather.map((value,index) => {
-                return <Weather key={index} item={value} />;
-            })}
-        </Row> */}
-</>
+    return (
+        <>
+
+            <Row className="card-container">
+                {covid.map((value, index) => {
+                    return <Covid key={index} item={value} />;
+                })}
+
+            </Row>
+            <Row className="card-container">
+                <Weather item={weather} />;
+                
+            </Row>
+        </>
     )
 }
 

@@ -7,7 +7,7 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 
-function Weather({className},item) {
+function Weather({className,item}) {
     return (
         <div className={className}>
 
@@ -32,7 +32,9 @@ function Weather({className},item) {
 
                         <div className="post_headerDescription">
                             <h4>Description :</h4>
-                            <p>{item.weather.description}</p>
+                            
+                            <p>{item.weather[0].description}</p>
+                            
                         </div>
                  
                 </div>

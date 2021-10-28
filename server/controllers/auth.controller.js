@@ -17,21 +17,20 @@ module.exports = {
                 method: 'get',
                 url: ` https://graph.facebook.com/me?access_token=${result.access_token}`
             })
-            if (Auth) {
+            if (Auth) {//ยืนยันตัวตน
                 let find = await user.findOne({ email })//หาในdatabase
                 if (find) {//ถ้ามีก็จะsign token
-                    const token = jwt.sign({ _id: find._id }, 'id_key_account', { expiresIn: '1d' }) //เวลาlogin 1วัน
+                    const token = jwt.sign({ _id: find._id },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' }) //เวลาlogin 1วัน
                     const { _id, name, email } = find;
                     res.status(200).json({ token, user: { _id, name, email } })
                 } else {//ถ้าsignin แล้วไม่มีในdatabase จะaddเข้าdatabaseให้
 
                     let users = new user({ name: Auth.data.name, email, type_account: "Facebook" })
-                    console.log(users)
                     await users.save(async (err, data) => {
                         if (err) {
                             return res.status(400).json({ error: "Something went worng..." })
                         }
-                        const token = jwt.sign({ _id: data._id }, 'id_key_account', { expiresIn: '1d' })
+                        const token = jwt.sign({ _id: data._id },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' })
                         const { _id, name, email } = users;
                         res.status(200).json({ token, user: { _id, name, email } })
                     });
@@ -46,14 +45,15 @@ module.exports = {
     register: async (req, res) => {
         const{name,email,password} = req.body
         const hashPassword = bcrypt.hashSync(password,12);
+        const data = {name,email,password:hashPassword}
         const newUser = new login(data);
         await newUser.save(async(err) => {
             if(err){
                 res.status(400).json("Username that other User has already exist");
                 console.log(err)
             }else{
-                const token = await newUser.generateAuthenToken();
-                res.status(200).json(token);
+                const token = jwt.sign({ _id:data },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' })
+                res.status(200).json({token,newUser});
             }
         })
     },
@@ -69,8 +69,8 @@ module.exports = {
             const checkPassword = await bcrypt.compareSync(password, user.password);
             if(checkPassword) {
                 //Shows user information but doesn't show password
-                const token = await user.generateAuthenToken();
-                res.status(200).json(token);
+                const token = jwt.sign({ user },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' });
+                res.status(200).json({token,user});
             } else {
                 res.status(400).json("Incorrect password!");
             }

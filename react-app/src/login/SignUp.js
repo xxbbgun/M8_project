@@ -20,7 +20,7 @@ function SignUp({ className }) {
     }).then((response) => {
       console.log(response);
       //event.preventDefault()
-      localStorage.setItem(`token`, response.data);
+      localStorage.setItem(`token`, JSON.stringify(response.data.token));
       history.push('/home')
     });
   };
