@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { Avatar, Button } from '@mui/material';
 import axios from 'axios';
@@ -10,25 +10,25 @@ function TweetBox({ className }) {
 
     const sendTweet = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/timeline/post',{
+        axios.post('http://localhost:8080/timeline/post', {
             text: tweetMessage,
             image: tweetImage,
-            
-        },  {headers:{Authorization:`Bearer ${token}`}}
+
+        }, { headers: { Authorization: `Bearer ${token}` } }
         ).then((response) => {
-            
+
             setTweetMessage("");
             setTweetImage("");
         })
         window.location.reload();
     }
-      useEffect(() => {
+    useEffect(() => {
         axios.get('http://localhost:8080/timeline/post'
         ).then((response) => {
-            
-          console.log(response)
+
+            console.log(response)
         })
-      }, [])
+    }, [])
 
     return (
         <div className={className}>
@@ -39,6 +39,7 @@ function TweetBox({ className }) {
                         <input
                             onChange={(event) => setTweetMessage(event.target.value)}
                             value={tweetMessage}
+                            className="tweet_message"
                             placeholder="What's happening?"
                             type="text"
                         />
@@ -65,8 +66,10 @@ function TweetBox({ className }) {
 export default styled(TweetBox)`
 .tweetBox{
     padding-bottom: 10px;
+    border-left: 1px solid #e6ecf0;
     border-bottom:8px solid #e6ecf0 ;
     padding-right: 10px;
+    
 }
 .tweet_text{
     width: 100%;
@@ -116,5 +119,15 @@ export default styled(TweetBox)`
     height: 40px;
     margin-top: 20px;
     margin-left: auto;
+}
+@media screen and (max-width: 768px) {
+    .tweetBox{
+        border-left: 1px solid #e6ecf0;
+    }
+}
+@media screen and (max-width: 385px) {
+    .tweetBox_input>input{
+    font-size: 15px;
+   }
 }
 `;

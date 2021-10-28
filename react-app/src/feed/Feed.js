@@ -12,14 +12,14 @@ function Feed({ className }) {
     const [name] = React.useState(JSON.parse(localStorage.getItem("name")));
     console.log(token)
     useEffect(() => {
-        async function getTweet(){
+        async function getTweet() {
             const tweet = await axios.get('http://localhost:8080/timeline/getpost',
-            {headers:{Authorization:`Bearer ${token}`}}
+                { headers: { Authorization: `Bearer ${token}` } }
             )
             setTweet(tweet.data)
         }
         getTweet();
-    },[])   
+    }, [])
     console.log(tweet)
     return (
         <>
@@ -32,7 +32,7 @@ function Feed({ className }) {
                     <TweetBox />
 
                     <FlipMove>
-                        {tweet.map((post,index) => (
+                        {tweet.map((post, index) => (
                             <Post
                                 key={index}
                                 text={post.text}
@@ -40,7 +40,7 @@ function Feed({ className }) {
                             />
                         ))}
                     </FlipMove>
-                    
+
                 </div>
 
             </div>
@@ -71,8 +71,20 @@ export default styled(Feed)`
     font-size: 20px;
     font-weight: 800;
 }
-/*Hide scrollbar */
-/* .feed::-webkit-scrollbar{
-    display: none;
-} */
+@media screen and (max-width: 768px) {
+  .feed{
+    width:60vw;
+    padding-left: 50px;
+  }
+}
+@media screen and (max-width: 385px) {
+    .feed{
+        width: 70vw;
+        margin-left: 0px;
+    }
+    .feed_header > h2{
+    font-size: 20px;
+    font-weight: 800;
+}
+}
 `;

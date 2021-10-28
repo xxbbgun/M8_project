@@ -49,7 +49,7 @@ export default styled(Post)`
   align-items: flex-start;
   border-bottom: 1px solid #e6ecf0;
   padding-bottom: 10px;
-
+  border-left: 1px solid #e6ecf0;
 
 }
 .post_body{
@@ -87,5 +87,15 @@ img.post_image{
 }
 .post_avartar{
     padding: 20px;
+}
+@media screen and (max-width: 768px) {
+    .post{
+        border-left: 1px solid #e6ecf0;
+    }
+}
+@media screen and (max-width: 385px) {
+    .post_headerText > h3 {
+    font-size: 16px;
+}
 }
 `;

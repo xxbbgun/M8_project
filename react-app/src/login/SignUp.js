@@ -177,5 +177,8 @@ export default styled(SignUp)`
   .link-signup{
     margin-left: 50px;
   }
+  .link-login{
+    margin-left: 50px; 
+  }
 }
 `;
