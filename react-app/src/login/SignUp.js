@@ -161,7 +161,7 @@ export default styled(SignUp)`
   .link-login:hover {
     color: black;
   }
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .container{
     margin-top: 200px;
   }
@@ -178,5 +178,4 @@ export default styled(SignUp)`
     margin-left: 50px;
   }
 }
- 
 `;

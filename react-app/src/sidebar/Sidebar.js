@@ -10,7 +10,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
-import { Link ,useHistory,NavLink} from "react-router-dom";
+import { Link ,useHistory} from "react-router-dom";
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 
 function Sidebar({ className }) {
@@ -101,9 +101,21 @@ export default styled(Sidebar)`
     height: 50px;
     margin-top: 20px;
 }
-@media screen and (max-width: 320px) {
-    h3{
-   display:none;
+@media screen and (max-width: 780px) {
+  h3{
+    font-size: 12px;
+    margin-top: 25px;
+  }
+  .sidebar_tweet{
+    width: 150px;
+  }
 }
+@media screen and (max-width: 385px) {
+    h3{
+    display: none;
+  }
+  .sidebar_tweet{
+    width: 100px;
+  }
 }
 `;
