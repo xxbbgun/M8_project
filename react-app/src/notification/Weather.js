@@ -30,13 +30,16 @@ function Weather({ className, item }) {
 
                         <div className="weather_headerDescription">
                             <h4>Description:</h4>
-                            {/* <p>{item.weather[0].description}</p> */}
+                            <p>{item.weather[0].description}</p>
+                        </div> 
+                         <div className="weather_headerDescription">
+                            <h4>Sunrise:</h4>
+                            <p>{item.sys.sunrise}</p>
                         </div>
                         <div className="weather_headerDescription">
-                            <h4>Sunrise:</h4>
-                            {/* <p>{item.sys.sunrise}</p> */}
-                        </div>
-
+                            <h4>Sunset:</h4>
+                            <p>{item.sys.sunset}</p>
+                        </div> 
                     </div>
                 </div>
             </div>

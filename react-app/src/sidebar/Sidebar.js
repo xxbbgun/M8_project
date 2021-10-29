@@ -11,7 +11,8 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
 import { Link ,useHistory} from "react-router-dom";
-import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 
 function Sidebar({ className }) {
     const history = useHistory();
@@ -25,8 +26,7 @@ function Sidebar({ className }) {
         <div className={className}>
             <div className="sidebar">
                 <div className="sidebar_logo">
-                    <FaceRetouchingNaturalIcon className="sidebar_tweetIcon" />
-                <h3 className="sidebar_name" >Dagona</h3>
+                    <TwitterIcon className="sidebar_tweetIcon" />
                 </div>
                 <Link to="/home" className="link"><SidebarOption  Icon={HomeIcon}/><h3>Home</h3></Link>
                 <Link to="/explore" className="link"><SidebarOption  Icon={SearchIcon} /><h3>Explore</h3></Link>
