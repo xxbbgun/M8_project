@@ -20,7 +20,7 @@ module.exports = {
             if (Auth) {//ยืนยันตัวตน
                 let find = await user.findOne({ email })//หาในdatabase
                 if (find) {//ถ้ามีก็จะsign token
-                    const token = jwt.sign({ _id: find._id },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' }) //เวลาlogin 1วัน
+                    const token = jwt.sign({ _id: find._id }, process.env.JWTPRIVATEKEY, { expiresIn: '1d' }) //เวลาlogin 1วัน
                     const { _id, name, email } = find;
                     res.status(200).json({ token, user: { _id, name, email } })
                 } else {//ถ้าsignin แล้วไม่มีในdatabase จะaddเข้าdatabaseให้
@@ -30,7 +30,7 @@ module.exports = {
                         if (err) {
                             return res.status(400).json({ error: "Something went worng..." })
                         }
-                        const token = jwt.sign({ _id: data._id },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' })
+                        const token = jwt.sign({ _id: data._id }, process.env.JWTPRIVATEKEY, { expiresIn: '1d' })
                         const { _id, name, email } = users;
                         res.status(200).json({ token, user: { _id, name, email } })
                     });
@@ -39,45 +39,50 @@ module.exports = {
 
             }
         } catch (err) {
-
+            res.status(500).json(error);
         }
     },
     register: async (req, res) => {
-        const{name,email,password} = req.body
-        const hashPassword = bcrypt.hashSync(password,12);
-        const data = {name,email,password:hashPassword}
-        const newUser = new login(data);
-        await newUser.save(async(err) => {
-            if(err){
-                res.status(400).json("Username that other User has already exist");
-                console.log(err)
-            }else{
-                const token = jwt.sign({ _id:data },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' })
-                res.status(200).json({token,newUser});
-            }
-        })
+        try {
+            const { name, email, password } = req.body
+            const hashPassword = bcrypt.hashSync(password, 12);
+            const data = { name, email, password: hashPassword }
+            const newUser = new login(data);
+            await newUser.save(async (err) => {
+                if (err) {
+                    res.status(400).json("Username that other User has already exist");
+                    console.log(err)
+                } else {
+                    const token = jwt.sign({ _id: data }, process.env.JWTPRIVATEKEY, { expiresIn: '1d' })
+                    res.status(200).json({ token, newUser });
+                }
+            })
+        }
+        catch (err) {
+            res.status(500).json(error);
+        }
+
     },
     signin: async (req, res) => {
         try {
             //Checking if the email exists
             const user = await login.findOne({ email: req.body.email });
-            if(!user) {
+            if (!user) {
                 res.status(400).json("Email is not found!");
             };
             //Password is correct
             const password = req.body.password;
             const checkPassword = await bcrypt.compareSync(password, user.password);
-            if(checkPassword) {
+            if (checkPassword) {
                 //Shows user information but doesn't show password
-                const token = jwt.sign({ user },  process.env.JWTPRIVATEKEY, { expiresIn: '1d' });
-                res.status(200).json({token,user});
+                const token = jwt.sign({ user }, process.env.JWTPRIVATEKEY, { expiresIn: '1d' });
+                res.status(200).json({ token, user });
             } else {
                 res.status(400).json("Incorrect password!");
             }
         } catch (error) {
-            console.log(error);
             res.status(500).json(error);
         }
     }
-  
+
 }
