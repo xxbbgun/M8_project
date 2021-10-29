@@ -46,7 +46,7 @@ export default styled(Timeline)`
     border:1px solid #e6ecf0;
     padding:15px 20px; 
     margin-left: 100px;
-    width: 70vw;
+    width: 72.5vw;
     border-bottom:8px solid #e6ecf0 ;
 }
 .feed_header{

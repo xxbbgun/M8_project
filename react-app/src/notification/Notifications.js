@@ -4,7 +4,7 @@ import { Row } from "react-bootstrap";
 import styled from "styled-components";
 import Covid from './Covid';
 import Weather from './Weather';
-function Notifications() {
+function Notifications({ className }) {
     const [covid, setCovid] = useState([]);
     const [weather, setWeather] = useState([]);
 
@@ -23,30 +23,47 @@ function Notifications() {
             const weathers = await axios.get(
                 'https://api.openweathermap.org/data/2.5/weather?q=Thailand&appid=ae362cc629b1a438db3b5782c3b4fff3'
             );
-            
+
             setWeather(weathers.data);
         }
         getWeather();
-        
+
     }, []);
 
     return (
         <>
-
-            <Row className="card-container">
-                {covid.map((value, index) => {
-                    return <Covid key={index} item={value} />;
-                })}
-                <Weather item={weather} />;
-            </Row>
+            <div className={className}>
+                <div className="notification">
+                    <div className="notifeed_header">
+                        <h2>Notfications</h2>
+                    </div>
+                    {covid.map((value, index) => {
+                        return <Covid key={index} item={value} />;
+                    })}
+                    <Weather item={weather} />
+                </div>
+            </div>
         </>
     )
 }
 
 export default styled(Notifications)`
-.card-container {
-    margin-top: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-  }`;
+.notifeed_header{
+    position: sticky;
+    top:0;
+    background-color: white;
+    z-index:100;
+    border:1px solid #e6ecf0;
+    padding:15px 20px; 
+    margin-left: 100px;
+    width: 72.5vw;
+    border-bottom:8px solid #e6ecf0 ;
+}
+
+@media screen and (max-width: 768px) {
+    .notifeed_header{
+      width: 50vw;
+   }
+} 
+
+  `;

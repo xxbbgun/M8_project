@@ -20,8 +20,9 @@ function SignIn({ className }) {
       url: "http://localhost:8080/auth/signin/facebook",
       data: { user }//option ส่งข้อมูลกลับไป(body เหมือนในpostman)
     });
+    console.log(res.data)
     localStorage.setItem(`token`, JSON.stringify(res.data.token));
-    localStorage.setItem(`name`, JSON.stringify(res.data.name));
+    localStorage.setItem(`name`, JSON.stringify(res.data.user.name));
     history.push('/home')
   }
 

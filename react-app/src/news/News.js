@@ -45,18 +45,6 @@ function News({ item, className }) {
 }
 
 export default styled(News)`
-.newsfeed_header{
-    position: sticky;
-    top:0;
-    background-color: white;
-    z-index:100;
-    border:1px solid #e6ecf0;
-    padding:15px 20px; 
-    margin-left: 100px;
-    margin-top: 0;  
-    border-bottom:1px solid #e6ecf0;
-    
-}
 .news{
   display: flex;
   align-items: flex-start;
@@ -64,7 +52,7 @@ export default styled(News)`
   border-left:1px solid #e6ecf0;
   border-right:1px solid #e6ecf0;
   padding-bottom: 10px;
-  width:80vw;
+  width:75vw;
   margin-left: 100px;
 }
 .news_body{
