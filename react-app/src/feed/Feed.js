@@ -8,8 +8,6 @@ import axios from 'axios';
 function Feed({ className }) {
     const [tweet, setTweet] = useState([]);
     const [token] = React.useState(JSON.parse(localStorage.getItem("token")));
-    const [name] = React.useState(JSON.parse(localStorage.getItem("name")));
-    console.log(token)
     useEffect(() => {
         async function getTweet() {
             const tweet = await axios.get('http://localhost:8080/timeline/getpost',
@@ -18,7 +16,7 @@ function Feed({ className }) {
             setTweet(tweet.data)
         }
         getTweet();
-    }, [])
+    }, [token])
     return (
         <>
 

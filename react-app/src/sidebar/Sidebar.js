@@ -31,11 +31,11 @@ function Sidebar({ className }) {
                 <Link to="/home" className="link"><SidebarOption  Icon={HomeIcon}/><h3>Home</h3></Link>
                 <Link to="/explore" className="link"><SidebarOption  Icon={SearchIcon} /><h3>Explore</h3></Link>
                 <Link to="/Notifications"  className="link"> <SidebarOption Icon={NotificationsNoneIcon}/><h3>Notifications</h3></Link>
-                <Link to  className="link"><SidebarOption Icon={MailOutlineIcon}/><h3>Messages</h3></Link>
-                <Link to  className="link"><SidebarOption Icon={BookmarkBorderIcon}/><h3>Bookmarks</h3></Link>
-                <Link to className="link"><SidebarOption Icon={ListAltIcon}/><h3>Lists</h3></Link>
-                <Link to className="link"><SidebarOption Icon={PersonOutlineIcon} /><h3>Profile</h3></Link>
-                <Link to className="link"><SidebarOption Icon={MoreHorizIcon}/><h3>More</h3></Link>
+                <Link to="/home"  className="link"><SidebarOption Icon={MailOutlineIcon}/><h3>Messages</h3></Link>
+                <Link to="/home"  className="link"><SidebarOption Icon={BookmarkBorderIcon}/><h3>Bookmarks</h3></Link>
+                <Link to="/home" className="link"><SidebarOption Icon={ListAltIcon}/><h3>Lists</h3></Link>
+                <Link to="/home" className="link"><SidebarOption Icon={PersonOutlineIcon} /><h3>Profile</h3></Link>
+                <Link to="/home" className="link"><SidebarOption Icon={MoreHorizIcon}/><h3>More</h3></Link>
                 <Button variant="outlined" className="sidebar_tweet" fullWidth onClick={logout}>Log out</Button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,Fragment } from 'react';
 import styled from "styled-components";
 import News from './News';
 import axios from 'axios';
@@ -9,11 +9,11 @@ function Timeline({ className }) {
 
     useEffect(() => {
         async function getProducts() {
-            const products = await axios.get(
+            const product = await axios.get(
                 'https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=qrj4aha7u2jMXKArXAGLsbQDXJE6qpVP'
             );
-            console.log(products);
-            setProducts(products.data.results);
+           
+            setProducts(product.data.results);
         }
 
         getProducts();
@@ -28,6 +28,9 @@ function Timeline({ className }) {
 
                 <Row className="card-container">
                     {products.map((value, index) => {
+                        if(!value.multimedia){
+                            return <Fragment key={index}></Fragment>
+                        }
                         return <News key={index} item={value} />;
                     })}
                 </Row>

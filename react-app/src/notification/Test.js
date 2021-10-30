@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import styled from "styled-components";
-import Covid from './Covid';
 import Weather from './Weather';
-function Notifications({ className }) {
-    const [covid, setCovid] = useState([]);
+function Test({ className }) {
     const [weather, setWeather] = useState();
-
-    useEffect(() => {
-        async function getCovid() {
-            const covids = await axios.get(
-                'https://covid19.ddc.moph.go.th/api/Cases/today-cases-all'
-            );
-            setCovid(covids.data);
-        }
-        getCovid();
-    }, []);
-
-
+    
     useEffect(() => {
         async function getWeather() {
-            const { data } = await axios.get(
-                'https://api.openweathermap.org/data/2.5/weather?q=Thailand&appid=28903f17048bc501423e1705810eba9f'
+            const weathers = await axios.get(
+                'https://api.openweathermap.org/data/2.5/weather?q=Thailand&appid=ae362cc629b1a438db3b5782c3b4fff3'
             );
 
-            setWeather(data);
+            setWeather(weathers.data);
+        console.log(weathers.data)  
+           
         }
         getWeather();
+           console.log(weather)     
     }, []);
 
     return (
@@ -36,15 +26,8 @@ function Notifications({ className }) {
                     <div className="notifeed_header">
                         <h2>Notfications</h2>
                     </div>
-                    {covid.map((value, index) => {
-                        return <Covid key={index} item={value} />;
-                    })}
-                    {weather ? (
-                         <Weather item={weather} /> 
-                    ) : (
-                        <div>loading</div>
-                    )}
-
+                   
+                    <Weather item={weather} />
 
                 </div>
             </div>
@@ -52,7 +35,7 @@ function Notifications({ className }) {
     )
 }
 
-export default styled(Notifications)`
+export default styled(Test)`
 .notifeed_header{
     position: sticky;
     top:0;

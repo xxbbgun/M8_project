@@ -10,8 +10,6 @@ function SignIn({ className }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loginStatus, setLoginStatus] = useState("");
-
   const responseFacebook = async (response) => {
     const { name, email, accessToken, userID } = response
     const user = { name, email, accessToken, userId: userID };
@@ -20,7 +18,6 @@ function SignIn({ className }) {
       url: "http://localhost:8080/auth/signin/facebook",
       data: { user }//option ส่งข้อมูลกลับไป(body เหมือนในpostman)
     });
-    console.log(res.data)
     localStorage.setItem(`token`, JSON.stringify(res.data.token));
     localStorage.setItem(`name`, JSON.stringify(res.data.user.name));
     history.push('/home')
@@ -73,7 +70,6 @@ function SignIn({ className }) {
 
 
             </div>
-            <h1>{loginStatus}</h1>
 
             <Link to="/sign-up" className="link-signup">Don't have account ?</Link>
 

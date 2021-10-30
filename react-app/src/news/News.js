@@ -29,7 +29,8 @@ function News({ item, className }) {
                             <p>{item.abstract}</p>
                         </div>
                     </div>
-                    <img src={item.multimedia[0].url} />
+                
+                    <img src={item.multimedia[0].url}  alt={item.title}/>
                     <div className="news_footer">
                         <ChatBubbleOutlineIcon fontSize="small" />
                         <RepeatIcon fontSize="small" />

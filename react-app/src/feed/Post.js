@@ -28,7 +28,7 @@ function Post({ className,text, image}) {
                             <p>{text}</p>
                         </div>
                     </div>
-                    <img className="post_image" src={image} />
+                    <img className="post_image" src={image} alt={image} />
                     <div className="post_footer">
                         <ChatBubbleOutlineIcon fontSize="small" />
                         <RepeatIcon fontSize="small" />
