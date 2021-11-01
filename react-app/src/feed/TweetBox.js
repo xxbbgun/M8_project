@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { Avatar, Button } from '@mui/material';
 import axios from 'axios';
@@ -22,13 +22,6 @@ function TweetBox({ className }) {
         })
         window.location.reload();
     }
-    useEffect(() => {
-        axios.get('http://localhost:8080/timeline/post'
-        ).then((response) => {
-
-            console.log(response)
-        })
-    }, [])
 
     return (
         <div className={className}>

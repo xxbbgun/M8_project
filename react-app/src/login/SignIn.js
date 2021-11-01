@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
@@ -34,11 +34,11 @@ function SignIn({ className }) {
       history.push('/home')
     })
   }
-  useEffect(() => {
-    axios.get('http://localhost:8080/auth/sign-in').then((response) => {
-    })
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/auth/sign-in').then((response) => {
+  //   })
 
-  }, [])
+  // }, [])
 
 
   return (
